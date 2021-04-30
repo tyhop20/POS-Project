@@ -92,6 +92,9 @@ public class MenuCats implements ActionListener{
         else {
             NuButton butt = (NuButton) e.getSource();
             order.addItem(butt.getItem());
+            frame.dispose();
+            Tables table = new Tables(order);
+            table.createTableGUI();
         }
     }
 }

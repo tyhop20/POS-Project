@@ -11,10 +11,6 @@ public class FloorLayout implements ActionListener {
      JLabel label;
      int userID;
 
-     //possible user values for testing
-     //static int user1 = 11111;
-     //static int user2 = 22222;
-     //static int user3 = 33333;
 
     public FloorLayout() {
         //create new window
@@ -49,7 +45,7 @@ public class FloorLayout implements ActionListener {
         gbc.insets.right = 10;
         gbc.insets.top = 10;
 
-        //int userID = user1;
+
 
         GridBagConstraints gbc1 = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;

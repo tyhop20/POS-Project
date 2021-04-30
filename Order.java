@@ -52,5 +52,13 @@ public class Order {
 
     }
 
+    public String toString() {
+        String strin = "";
+        for(Item item : items) {
+            strin += (item.getName() + "    " + item.getPrice() + "\n");
+        }
+        return strin;
+    }
+
 
 }

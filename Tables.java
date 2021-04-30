@@ -22,6 +22,7 @@ public class Tables implements ActionListener{
         frame = new JFrame("Floor Plan");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 600);
+        this.order = order;
     }
 
 
@@ -107,11 +108,8 @@ public class Tables implements ActionListener{
         pane.add(button, gbc);
 
         //OrderConsole
-        String strin = "";
-        for(Item item : order.items) {
-            strin += (item.getName() + "    " + item.getPrice() + "\n");
-        }
-        console = new JTextArea(strin);
+
+        console = new JTextArea(order.toString());
 
         console.setSize(200, 400);
         gbc.gridx = 3;
