@@ -27,6 +27,7 @@ public class MenuFormat implements ActionListener {
         frame.setVisible(true);
     }
 
+    //implement buttons
     public void addComponentsToMenuPane(Container pane) {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -40,7 +41,7 @@ public class MenuFormat implements ActionListener {
 
         //back button
         button = new JButton("BACK");
-        button.setBackground(Color.DARK_GRAY);
+        button.setBackground(Color.GRAY);
         button.setOpaque(true);
         button.setSize(20, 10);
         gbc.ipadx = 40;
@@ -77,6 +78,8 @@ public class MenuFormat implements ActionListener {
         }
     }
 
+    //when each category button is selected a new window is generated with the appropriate food items,
+    //the back button returns to the previous category
     @Override
     public void actionPerformed(ActionEvent e) {
         String category = ((JButton) e.getSource()).getText();

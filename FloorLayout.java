@@ -11,19 +11,11 @@ public class FloorLayout implements ActionListener {
      JLabel label;
      int userID;
 
-
-    public FloorLayout() {
-        //create new window
-        frame = new JFrame("Floor Plan");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 600);
-    }
-
+    //constuctor
     public FloorLayout(int userID) {
         this.userID = userID;
         frame = new JFrame("Floor Plan");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 600);
     }
 
     public void createFloorPlanGUI() {
@@ -32,22 +24,19 @@ public class FloorLayout implements ActionListener {
         //display
         frame.pack();
         frame.setVisible(true);
-        int userID;
     }
 
     public void addComponentsToFloorplan(Container pane){
-        //gridBagConstraint parameters
+        //gridBagConstraint parameters for GridBagLayout
         pane.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        //space between buttons
         gbc.insets.bottom = 10;
         gbc.insets.left = 10;
         gbc.insets.right = 10;
         gbc.insets.top = 10;
 
-
-
-        GridBagConstraints gbc1 = new GridBagConstraints();
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         //for table naming
@@ -99,6 +88,7 @@ public class FloorLayout implements ActionListener {
                 }
                 button.setOpaque(true);
 
+                //padding within each button
                 gbc.ipadx = 40;
                 gbc.ipady = 40;
                 gbc.fill= GridBagConstraints.HORIZONTAL;
@@ -111,10 +101,11 @@ public class FloorLayout implements ActionListener {
         }
     }
 
+    //when table is selected, an order object is created, with the Table's name as a parameter, as well as a table object
     @Override
     public void actionPerformed(ActionEvent e) {
         String tableName = ((JButton) e.getSource()).getText();
-        Order order = new Order(1);
+        Order order = new Order(tableName);
         if (e.getSource().getClass().equals(button.getClass())) {
             frame.dispose();
             Tables table = new Tables(tableName, order);

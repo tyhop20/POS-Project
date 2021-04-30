@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 public class Order {
 
@@ -7,28 +8,40 @@ public class Order {
     private double total = 0;
     private int iterator = 0;
     private static int orderID = 0;
-    int tableNo;
+    private String tableName;
 
-
-    public Order(int tableNo) {
+    //constructor
+    public Order(String tableName) {
+        this.tableName = tableName;
         orderID++;
-        this.tableNo = tableNo;
     }
 
+    //getter for tableName
+    public String getTableName() {
+        return tableName;
+    }
 
-
+    //method for adding items
     public void addItem(Item item) {
         items.add(item);
         subtotal += item.getPrice();
         calcTotal();
-
     }
 
-    public void calcTotal() {
-        total = subtotal*tax + subtotal;
+    //method for calculating total
+    public String calcTotal() {
+        DecimalFormat df = new DecimalFormat("###.##");
+        total = subtotal *tax + subtotal;
+        String roundOff = df.format(total);
+        return roundOff;
     }
 
+    //display order to console
     public void display() {
+        System.out.println("************************************");
+        System.out.println("Order Number: " +orderID);
+        System.out.println(tableName + "\n");
+
         for(Item item : items) {
             System.out.println(item.getName());
             if(item instanceof Entrees) {
@@ -49,9 +62,9 @@ public class Order {
         int newIt = iterator;
         iterator++;
         return items.get(newIt).getPrice();
-
     }
 
+    //toString method for displaying name and cost
     public String toString() {
         String strin = "";
         for(Item item : items) {

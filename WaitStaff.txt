@@ -1,0 +1,22 @@
+Employee 1:
+    NAME: Kate Fisher
+    ROLE: Server
+    USERID: 11111
+
+Employee 2:
+    NAME: Tyler Hopkins
+    ROLE: Server
+    USERID: 22222
+
+Employee 3:
+    NAME: Austin Klein
+    ROLE: Server
+    USERID: 33333
+
+Employee 4:
+    NAME: Moreland Walthour
+    ROLE: Server
+    USERID: 44444
+
+
+

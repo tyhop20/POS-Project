@@ -12,26 +12,29 @@ public class Tables implements ActionListener{
     JTextArea console;
     String tableName;
     Order order;
+    JTextArea total;
+
+
 
     public Tables() {
-        frame = new JFrame("Floor Plan");
+        frame = new JFrame(order.getTableName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 600);
+        frame.setSize(900, 900);
     }
+
     public Tables(Order order) {
-        frame = new JFrame("Floor Plan");
+        frame = new JFrame(order.getTableName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 600);
+        frame.setSize(900, 600);
         this.order = order;
     }
 
 
-
     public Tables(String tableName, Order order) {
         this.tableName = tableName;
-        frame = new JFrame("Floor Plan");
+        frame = new JFrame(order.getTableName());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 600);
+        frame.setSize(900, 600);
         this.order = order;
     }
 
@@ -39,90 +42,95 @@ public class Tables implements ActionListener{
         //setup content frame
         addComponentsToTable(frame.getContentPane());
         //display
-        frame.pack();
         frame.setVisible(true);
     }
 
     public void addComponentsToTable(Container pane) {
-        pane.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        //gbc.insets.bottom = 10;
-        //gbc.insets.left = 10;
-        //gbc.insets.right = 10;
-        //gbc.insets.top = 10;
+        pane.setLayout(null);
 
-
-        //back button
+        //Back button
         button = new JButton("BACK");
-        button.setBackground(Color.DARK_GRAY);
+        button.setBackground(Color.GRAY);
         button.setOpaque(true);
-        button.setSize(20, 10);
-        gbc.ipadx = 40;
-        gbc.ipady = 40;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = .5;
+        button.setBounds(25,25,125,75 );
         button.addActionListener(this);
-        pane.add(button, gbc);
+        pane.add(button);
 
-        //Menu Categories Label
-        label = new JLabel("" + tableName);
-        label.setFont(new Font(null, Font.BOLD, 15));
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = .5;
-        pane.add(label, gbc);
+        //Table Label
+        label = new JLabel(order.getTableName());
+        label.setFont(new Font(null, Font.BOLD, 25));
+        label.setBounds(200,25, 150,75);
+        pane.add(label);
 
-        int seatNum = 0;
-        //nested for loops to create table layout
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                seatNum++;
-                button = new JButton("Seat " + seatNum);
-                button.setSize(50, 50);
-                gbc.ipadx = 0;
-                gbc.ipady = 0;
-                gbc.fill = GridBagConstraints.HORIZONTAL;
-                gbc.gridx = j;
-                gbc.gridy = i + 1;
-                button.addActionListener(this);
-                pane.add(button, gbc);
-            }
-        }
+        //Buttons for each seat
+        button = new JButton("Seat 1");
+        button.setBounds(175,175, 125, 125);
+        button.addActionListener(this);
+        pane.add(button);
 
-        //addToOrder button
-        button = new JButton("ADD TO ORDER");
+        button = new JButton("Seat 2");
+        button.setBounds(300,175, 125, 125);
+        button.addActionListener(this);
+        pane.add(button);
+
+        button = new JButton("Seat 3");
+        button.setBounds(175,300, 125, 125);
+        button.addActionListener(this);
+        pane.add(button);
+
+        button = new JButton("Seat 4");
+        button.setBounds(300,300, 125, 125);
+        button.addActionListener(this);
+        pane.add(button);
+
+        //SEND button
+        button = new JButton("SEND");
         button.setBackground(Color.GREEN);
         button.setOpaque(true);
-        button.setSize(20, 10);
-        gbc.ipadx = 40;
-        gbc.ipady = 40;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.weightx = .5;
+        button.setBounds(25,475,125,75 );
         button.addActionListener(this);
-        pane.add(button, gbc);
+        pane.add(button);
+
+        //Order Label
+        label = new JLabel("Current Order:");
+        label.setFont(new Font(null, Font.BOLD, 25));
+        label.setBounds(600,25, 275,50);
+        pane.add(label);
 
         //OrderConsole
-
         console = new JTextArea(order.toString());
+        console.setBounds(600,100,275,300);
+        pane.add(console);
 
-        console.setSize(200, 400);
-        gbc.gridx = 3;
-        gbc.gridy = 0;
-        gbc.gridheight = 6;
-        pane.add(console, gbc);
+        //Total Box
+        total = new JTextArea(order.calcTotal());
+        total.setBounds(750,425,200,25);
+        pane.add(total);
 
+        //Total Label
+        label = new JLabel("SubTotal with 7% Tax");
+        label.setFont(new Font(null, Font.BOLD, 15));
+        label.setBounds(500,415, 175,50);
+        pane.add(label);
     }
 
-
+    //when seat buttons are pressed, MenuFormat object is created with the already created order parameter
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().getClass().equals(button.getClass())) {
+        String category = ((JButton) e.getSource()).getText();
+        if (category.equals("SEND")){
+            order.display();
+            frame.dispose();
+            FloorLayout section = new FloorLayout(11111);
+            section.createFloorPlanGUI();
+
+        } else if (category.equals("BACK")) {
+            frame.dispose();
+            //section is created according to users ID number
+            FloorLayout section = new FloorLayout(11111);
+            section.createFloorPlanGUI();
+
+        } else {
             frame.dispose();
             MenuFormat menu = new MenuFormat(order);
             menu.createMenuGUI();

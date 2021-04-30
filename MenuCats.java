@@ -10,8 +10,9 @@ public class MenuCats implements ActionListener{
     Item[] food;
     Order order;
 
+    //constructor
     public MenuCats(Item[] food, Order order) {
-        frame = new JFrame("Menu Categories");
+        frame = new JFrame("Menu Items");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.food = food;
@@ -26,7 +27,7 @@ public class MenuCats implements ActionListener{
         frame.setVisible(true);
     }
 
-
+    // adding buttons and formatting
     public void addComponentsToCatsPane(Container pane) {
         pane.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -40,7 +41,7 @@ public class MenuCats implements ActionListener{
 
         //back button
         button = new JButton("BACK");
-        button.setBackground(Color.DARK_GRAY);
+        button.setBackground(Color.GRAY);
         button.setOpaque(true);
         button.setSize(20, 10);
         gbc.ipadx = 40;
@@ -62,6 +63,7 @@ public class MenuCats implements ActionListener{
         pane.add(label, gbc);
 
 
+        //food item buttons
         for (int i = 0; i < food.length; i++) {
 
             button = new NuButton(food[i]);
@@ -75,17 +77,11 @@ public class MenuCats implements ActionListener{
             button.addActionListener(this);
             pane.add(button, gbc);
         }
-
-
-
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String category = ((JButton) e.getSource()).getText();
-        int num;
-        NuButton butt = (NuButton) e.getSource();
 
         if(category.equals("BACK")) {
             frame.dispose();
@@ -94,8 +90,8 @@ public class MenuCats implements ActionListener{
         }
 
         else {
+            NuButton butt = (NuButton) e.getSource();
             order.addItem(butt.getItem());
-
             frame.dispose();
             Tables table = new Tables(order);
             table.createTableGUI();

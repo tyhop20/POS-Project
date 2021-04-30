@@ -1,44 +1,50 @@
 
 
-import java.awt.Color;
+//imports
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+//creates opening window where user enters ID to loging
 public class LoginGUI implements ActionListener {
 
-    private static JLabel userLabel;
+    private static JLabel userLabel,welcome;
     private static JTextField userText;
-    private static JLabel passwordLabel;
-    private static JPasswordField passwordText;
     private static JButton button;
-    private static JLabel success;
+    private static JFrame frame;
 
+    //main method to kickstart application
     public static void main(String[]args) {
-
-
-
+        //panel object, used absolute positioning for layout
         JPanel panel = new JPanel();
-        JFrame frame = new JFrame();
+        panel.setLayout(null);
+
+        //new frame object
+        frame = new JFrame("Login");
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.add(panel);
 
-        panel.setLayout(null);
+        //Welcome Label
+        welcome = new JLabel("J's Corner Restaurant") ;
+        welcome.setBounds(135, 50, 300,23);
+        welcome.setHorizontalTextPosition(SwingConstants.CENTER);
+        welcome.setFont(new Font(null, Font.BOLD, 15));
+        panel.add(welcome);
 
-        //user label
+        //userID label
         userLabel = new JLabel("User ID:");
         userLabel.setBounds(58, 97, 120, 23);
         panel.add(userLabel);
 
+        //userID text field to enter password
         userText = new JTextField(20);
         userText.setBounds(175, 98, 154, 23);
         panel.add(userText);
@@ -48,25 +54,22 @@ public class LoginGUI implements ActionListener {
         button.setBounds(200, 175, 80, 25);
         button.setHorizontalTextPosition(SwingConstants.CENTER);
         button.addActionListener(new LoginGUI());
+        button.setBackground(Color.GREEN);
+        button.setOpaque(true);
         panel.add(button);
-
-        success = new JLabel("");
-        success.setBounds(180, 210, 300, 25);
-        panel.add(success);
 
         frame.setVisible(true);
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            // when login button is clicked, the userID entered is saved
             String user = userText.getText();
             int userID = Integer.parseInt(user);
-            System.out.println(user);
-
-            FloorLayout table = new FloorLayout(userID);
-            table.createFloorPlanGUI();
-
+            frame.dispose();
+            //section is created according to users ID number
+            FloorLayout section = new FloorLayout(userID);
+            section.createFloorPlanGUI();
         }
     }
 
