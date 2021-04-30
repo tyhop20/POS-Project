@@ -9,7 +9,6 @@ public class MenuFormat implements ActionListener {
     JFrame frame;
     JLabel label;
     Menu menu = new Menu();
-    int menuItem;
 
     public MenuFormat() {
         //create new window
@@ -82,31 +81,26 @@ public class MenuFormat implements ActionListener {
             frame.dispose();
             MenuCats apps = new MenuCats(menu.getApps());
             apps.createMenuCatsGUI();
-            menuItem = 0;
         }
         if (category.equals("Wraps")) {
             frame.dispose();
             MenuCats apps = new MenuCats(menu.getWraps());
             apps.createMenuCatsGUI();
-            menuItem = 1;
         }
         if (category.equals("Entrees")) {
             frame.dispose();
             MenuCats apps = new MenuCats(menu.getEntrees());
             apps.createMenuCatsGUI();
-            menuItem = 2;
         }
         if (category.equals("Sides")) {
             frame.dispose();
             MenuCats apps = new MenuCats(menu.getSides());
             apps.createMenuCatsGUI();
-            menuItem = 3;
         }
         if (category.equals("Beverages")) {
             frame.dispose();
             MenuCats apps = new MenuCats(menu.getBevs());
             apps.createMenuCatsGUI();
-            menuItem = 4;
         }
     }
 }
