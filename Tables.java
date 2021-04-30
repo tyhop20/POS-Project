@@ -1,4 +1,4 @@
-package edu.prototype;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,12 +11,27 @@ public class Tables implements ActionListener{
     JLabel label;
     JTextArea console;
     String tableName;
+    Order order;
 
-    public Tables(String tableName) {
+    public Tables() {
+        frame = new JFrame("Floor Plan");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 600);
+    }
+    public Tables(Order order) {
+        frame = new JFrame("Floor Plan");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(600, 600);
+    }
+
+
+
+    public Tables(String tableName, Order order) {
         this.tableName = tableName;
         frame = new JFrame("Floor Plan");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(600, 600);
+        this.order = order;
     }
 
     public void createTableGUI() {
@@ -92,7 +107,12 @@ public class Tables implements ActionListener{
         pane.add(button, gbc);
 
         //OrderConsole
-        console = new JTextArea("Line Item Order:");
+        String strin = "";
+        for(Item item : order.items) {
+            strin += (item.getName() + "    " + item.getPrice() + "\n");
+        }
+        console = new JTextArea(strin);
+
         console.setSize(200, 400);
         gbc.gridx = 3;
         gbc.gridy = 0;
@@ -106,7 +126,7 @@ public class Tables implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().getClass().equals(button.getClass())) {
             frame.dispose();
-            MenuFormat menu = new MenuFormat();
+            MenuFormat menu = new MenuFormat(order);
             menu.createMenuGUI();
         }
     }

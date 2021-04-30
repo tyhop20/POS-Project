@@ -8,12 +8,14 @@ public class MenuCats implements ActionListener{
     JFrame frame;
     JLabel label;
     Item[] food;
+    Order order;
 
-    public MenuCats(Item[] food) {
+    public MenuCats(Item[] food, Order order) {
         frame = new JFrame("Menu Categories");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.food = food;
+        this.order = order;
     }
 
     public  void createMenuCatsGUI() {
@@ -61,7 +63,8 @@ public class MenuCats implements ActionListener{
 
 
         for (int i = 0; i < food.length; i++) {
-            button = new JButton(" " + food[i].getName());
+
+            button = new NuButton(food[i]);
             button.setSize(20, 20);
             gbc.ipadx = 40;
             gbc.ipady = 40;
@@ -73,25 +76,22 @@ public class MenuCats implements ActionListener{
             pane.add(button, gbc);
         }
 
-        //addToOrder button
-        button = new JButton("ADD TO ORDER");
-        button.setBackground(Color.GREEN);
-        button.setOpaque(true);
-        button.setSize(20, 10);
-        gbc.ipadx = 40;
-        gbc.ipady = 40;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 5;
-        gbc.weightx = .5;
-        button.addActionListener(this);
-        pane.add(button, gbc);
+
 
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String category = ((JButton) e.getSource()).getText();
+        if(category.equals("BACK")) {
+            frame.dispose();
+            MenuFormat menu = new MenuFormat(order);
+            menu.createMenuGUI();
+        }
+        else {
+            NuButton butt = (NuButton) e.getSource();
+            order.addItem(butt.getItem());
+        }
     }
 }

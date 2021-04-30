@@ -2,11 +2,11 @@ public class Menu {
 
     private Item menu[][] = new Item[5][4];
 
-    private Item[] Appetizer = new Item[4];
-    private Item[] Side = new Item[4];
-    private Item[] Bev = new Item[4];
-    private Item[] Wrap = new Item[4];
-    private Item[] Entree = new Item[4];
+    Item[] Appetizer = new Item[4];
+    Item[] Side = new Item[4];
+    Item[] Bev = new Item[4];
+    Item[] Wrap = new Item[4];
+    Item[] Entree = new Item[4];
     
     public Menu() {
 

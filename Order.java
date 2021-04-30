@@ -7,16 +7,21 @@ public class Order {
     private double total = 0;
     private int iterator = 0;
     private static int orderID = 0;
+    int tableNo;
 
 
-    public Order() {
+    public Order(int tableNo) {
         orderID++;
+        this.tableNo = tableNo;
     }
+
+
 
     public void addItem(Item item) {
         items.add(item);
         subtotal += item.getPrice();
         calcTotal();
+
     }
 
     public void calcTotal() {

@@ -1,4 +1,4 @@
-package edu.prototype;
+
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -14,19 +14,19 @@ import javax.swing.SwingConstants;
 
 public class LoginGUI implements ActionListener {
 
-    public static JLabel userLabel;
-    public static JTextField userText;
-    public static JLabel passwordLabel;
-    public static JPasswordField passwordText;
-    public static JButton button;
-    public static JLabel success;
-    public static JPanel panel;
-    public static JFrame frame;
+    private static JLabel userLabel;
+    private static JTextField userText;
+    private static JLabel passwordLabel;
+    private static JPasswordField passwordText;
+    private static JButton button;
+    private static JLabel success;
 
     public static void main(String[]args) {
 
-        panel = new JPanel();
-        frame = new JFrame();
+
+
+        JPanel panel = new JPanel();
+        JFrame frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -62,8 +62,7 @@ public class LoginGUI implements ActionListener {
 
             String user = userText.getText();
             int userID = Integer.parseInt(user);
-            System.out.println("Current User: " +user);
-            frame.dispose();
+            System.out.println(user);
 
             FloorLayout table = new FloorLayout(userID);
             table.createFloorPlanGUI();

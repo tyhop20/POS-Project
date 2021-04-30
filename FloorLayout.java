@@ -1,4 +1,4 @@
-package edu.prototype;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -118,9 +118,10 @@ public class FloorLayout implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String tableName = ((JButton) e.getSource()).getText();
+        Order order = new Order(1);
         if (e.getSource().getClass().equals(button.getClass())) {
             frame.dispose();
-            Tables table = new Tables(tableName);
+            Tables table = new Tables(tableName, order);
             table.createTableGUI();
         }
     }

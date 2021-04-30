@@ -9,12 +9,15 @@ public class MenuFormat implements ActionListener {
     JFrame frame;
     JLabel label;
     Menu menu = new Menu();
+    int menuItem;
+    Order order;
 
-    public MenuFormat() {
+    public MenuFormat(Order order) {
         //create new window
         frame = new JFrame("Menu Categories");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.order = order;
     }
     public  void createMenuGUI() {
         //setup content frame
@@ -77,30 +80,41 @@ public class MenuFormat implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String category = ((JButton) e.getSource()).getText();
+        if (category.equals("BACK")) {
+            frame.dispose();
+            Tables table = new Tables(order);
+            table.createTableGUI();
+            menuItem = 0;
+        }
         if (category.equals("Appetizer")) {
             frame.dispose();
-            MenuCats apps = new MenuCats(menu.getApps());
+            MenuCats apps = new MenuCats(menu.getApps(), order);
             apps.createMenuCatsGUI();
+            menuItem = 0;
         }
         if (category.equals("Wraps")) {
             frame.dispose();
-            MenuCats apps = new MenuCats(menu.getWraps());
+            MenuCats apps = new MenuCats(menu.getWraps(), order);
             apps.createMenuCatsGUI();
+            menuItem = 1;
         }
         if (category.equals("Entrees")) {
             frame.dispose();
-            MenuCats apps = new MenuCats(menu.getEntrees());
+            MenuCats apps = new MenuCats(menu.getEntrees(), order);
             apps.createMenuCatsGUI();
+            menuItem = 2;
         }
         if (category.equals("Sides")) {
             frame.dispose();
-            MenuCats apps = new MenuCats(menu.getSides());
+            MenuCats apps = new MenuCats(menu.getSides(), order);
             apps.createMenuCatsGUI();
+            menuItem = 3;
         }
         if (category.equals("Beverages")) {
             frame.dispose();
-            MenuCats apps = new MenuCats(menu.getBevs());
+            MenuCats apps = new MenuCats(menu.getBevs(), order);
             apps.createMenuCatsGUI();
+            menuItem = 4;
         }
     }
 }
