@@ -1,5 +1,3 @@
-package edu.prototype;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,9 +7,9 @@ public class MenuCats implements ActionListener{
     JButton button;
     JFrame frame;
     JLabel label;
-    String[] food;
+    Item[] food;
 
-    public MenuCats(String[] food) {
+    public MenuCats(Item[] food) {
         frame = new JFrame("Menu Categories");
         frame.setSize(600, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,7 +51,7 @@ public class MenuCats implements ActionListener{
         pane.add(button, gbc);
 
         //Menu Categories Label
-        label = new JLabel("" +food[0]);
+        label = new JLabel("" + food[0].getClass().getSimpleName());
         label.setFont(new Font(null, Font.BOLD, 15));
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 1;
@@ -62,8 +60,8 @@ public class MenuCats implements ActionListener{
         pane.add(label, gbc);
 
 
-        for (int i = 1; i < 5; i++) {
-            button = new JButton(" " + food[i]);
+        for (int i = 0; i < food.length; i++) {
+            button = new JButton(" " + food[i].getName());
             button.setSize(20, 20);
             gbc.ipadx = 40;
             gbc.ipady = 40;

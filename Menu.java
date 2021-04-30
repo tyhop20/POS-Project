@@ -2,6 +2,12 @@ public class Menu {
 
     private Item menu[][] = new Item[5][4];
 
+    Item[] Appetizer = new Item[4];
+    Item[] Side = new Item[4];
+    Item[] Bev = new Item[4];
+    Item[] Wrap = new Item[4];
+    Item[] Entree = new Item[4];
+    
     public Menu() {
 
         Item CatfishBites = new Appetizer("Catfish Bites", 6.50);
@@ -45,9 +51,55 @@ public class Menu {
         Item SweetTeaFriedChicken = new Entrees("Sweet Tea Fried Chicken", 11.50);
         menu [4][3] = SweetTeaFriedChicken;
 
-
-
+        
+        
+         for(int i=0; i<4; i++) {
+            Appetizer[i] = menu[0][i];
+         }
+        
+         for(int i=0; i<4; i++) {
+             Side[i] = menu[1][i];
+         }
+         
+         for(int i=0; i<4; i++) {
+             Bev[i] = menu[2][i];
+         }
+         
+         for(int i=0; i<4; i++) {
+             Wrap[i] = menu[3][i];
+         }
+         
+         for(int i=0; i<4; i++) {
+             Entree[i] = menu[4][i];
+         }
+        
     }
+    
+    public Item[] getApps()
+    {
+    	return Appetizer;
+    }
+    
+    public Item[] getSides()
+    {
+    	return Side;
+    }
+    
+    public Item[] getBevs()
+    {
+    	return Bev;
+    }
+    
+    public Item[] getWraps()
+    {
+    	return Wrap;
+    }
+    
+    public Item[] getEntrees()
+    {
+    	return Entree;
+    }
+    
 
     public Item[][] getMenu() {
         return menu;

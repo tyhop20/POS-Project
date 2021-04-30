@@ -1,4 +1,3 @@
-package edu.prototype;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +8,8 @@ public class MenuFormat implements ActionListener {
     JButton button;
     JFrame frame;
     JLabel label;
+    Menu menu = new Menu();
+    int menuItem;
 
     public MenuFormat() {
         //create new window
@@ -79,43 +80,33 @@ public class MenuFormat implements ActionListener {
         String category = ((JButton) e.getSource()).getText();
         if (category.equals("Appetizer")) {
             frame.dispose();
-            String[] food = {"Appetizers: ","Catfish Bites", "Cheesestick Trio", "Chicken Quesadilla", "Fried Veggies"};
-            MenuCats apps = new MenuCats(food);
+            MenuCats apps = new MenuCats(menu.getApps());
             apps.createMenuCatsGUI();
+            menuItem = 0;
         }
         if (category.equals("Wraps")) {
             frame.dispose();
-            String[] food = {"Wraps: ","Chicken BLT", "Chicken Ceasar", "Club", "Veggie"};
-            MenuCats apps = new MenuCats(food);
+            MenuCats apps = new MenuCats(menu.getWraps());
             apps.createMenuCatsGUI();
+            menuItem = 1;
         }
         if (category.equals("Entrees")) {
             frame.dispose();
-            String[] food = {"Entrees: ","Grilled Pork Chops", "Seared Tuna", "Shrimp and Grits", "Sweet Tea Fried Chicken"};
-            MenuCats apps = new MenuCats(food);
+            MenuCats apps = new MenuCats(menu.getEntrees());
             apps.createMenuCatsGUI();
+            menuItem = 2;
         }
         if (category.equals("Sides")) {
             frame.dispose();
-            String[] food = {"Sides: ","Broccoli", "Curly Fries", "Mac & Cheese", "Mashed Potatoes"};
-            MenuCats apps = new MenuCats(food);
+            MenuCats apps = new MenuCats(menu.getSides());
             apps.createMenuCatsGUI();
+            menuItem = 3;
         }
         if (category.equals("Beverages")) {
             frame.dispose();
-            String[] food = {"Beverages: ","Coffee", "Sweet Tea", "Lemonade", "Coke"};
-            MenuCats apps = new MenuCats(food);
+            MenuCats apps = new MenuCats(menu.getBevs());
             apps.createMenuCatsGUI();
+            menuItem = 4;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
