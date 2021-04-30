@@ -84,14 +84,18 @@ public class MenuCats implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         String category = ((JButton) e.getSource()).getText();
+        int num;
+        NuButton butt = (NuButton) e.getSource();
+
         if(category.equals("BACK")) {
             frame.dispose();
             MenuFormat menu = new MenuFormat(order);
             menu.createMenuGUI();
         }
+
         else {
-            NuButton butt = (NuButton) e.getSource();
             order.addItem(butt.getItem());
+
             frame.dispose();
             Tables table = new Tables(order);
             table.createTableGUI();

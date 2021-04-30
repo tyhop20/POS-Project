@@ -1,6 +1,6 @@
 public class Wraps extends Item  {
 
-    private Sides side;
+    private Sides side1 = new Sides("Mac & Cheese", 0.00);
 
     public Wraps() {
         super();
@@ -12,11 +12,11 @@ public class Wraps extends Item  {
         this.price = price;
     }
 
-    public Sides getSide() {
-        return side;
+    public String getSide() {
+        return side1.getName();
     }
 
     public void setSide(Sides side) {
-        this.side = side;
+        this.side1 = side;
     }
 }

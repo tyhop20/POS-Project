@@ -56,6 +56,13 @@ public class Order {
         String strin = "";
         for(Item item : items) {
             strin += (item.getName() + "    " + item.getPrice() + "\n");
+            if(item instanceof Entrees) {
+                strin += ("   " + ((Entrees) item).getSide1() + "\n");
+                strin += ("   " + ((Entrees) item).getSide2() + "\n");
+            }
+            if(item instanceof Wraps) {
+                strin += ("   " + ((Wraps) item).getSide() + "\n");
+            }
         }
         return strin;
     }
