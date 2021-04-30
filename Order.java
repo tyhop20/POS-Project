@@ -2,14 +2,15 @@ import java.util.ArrayList;
 public class Order {
 
     ArrayList<Item> items = new ArrayList<Item>();
-    double subtotal = 0;
-    double tax = .07;
-    double total = 0;
-    int iterator = 0;
+    private double subtotal = 0;
+    private double tax = .07;
+    private double total = 0;
+    private int iterator = 0;
+    private static int orderID = 0;
 
 
     public Order() {
-
+        orderID++;
     }
 
     public void addItem(Item item) {
